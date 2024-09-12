@@ -16,7 +16,7 @@
         
       @if (parking.length !== 0){
         <div class="table-container">
-          <table class="styled-table">
+          <table class="parking-table">
             <thead>
               <tr>
                 <th>{{tableHeader.c1}}</th>
@@ -31,14 +31,18 @@
                   <td>{{spot.number}}</td>
                   <td [ngClass]="{'available': spot.available}">{{spot.available ? 'Available' : 'Occupied'}}</td>
                   <td>{{spot.entry}}</td>
-                  <td style="align-items: start;">
-                    @if (spot.available)
-                    {
-                      <button style="margin-right: 20px;" (click)="occupyParkingState($index)">Occupy</button>
-                    } @else {
-                      <button style="margin-right: 20px;" (click)="setFreeParkingState($index)">Free It</button>
-                    }
-                    <button class="btn-deleteThat" (click)="deleteThatSpot($index)"><img src=".\images\trash-can-ico.svg" alt=""></button>
+                  <td>
+                    <div class="actions-container">
+                      @if (spot.available)
+                      {
+                        <button (click)="occupyParkingState($index)">Occupy</button>
+                      } @else {
+                        <button (click)="setFreeParkingState($index)">Vacate</button>
+                      }
+                      <button class="btn-deleteThat" (click)="deleteThatSpot($index)">
+                        <i class="fi fi-rr-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               }
@@ -47,12 +51,14 @@
         </div>
         
       <div class="btn-container">
-        <button class="btn-admin" (click)="addNew()">Add New</button>
+        <button class="btn-admin" (click)="addNew()">
+          <i class="fi fi-br-add"></i>
+        </button>
         <button class="btn-admin" (click)="deleteAll()">Delete All</button>
       </div>
       } @else {
         <div class="table-container">
-          <table class="styled-table">
+          <table class="parking-table">
             <thead>
               <tr>
                 <th>{{tableHeader.c1}}</th>
@@ -63,7 +69,9 @@
             </thead>
           </table>
         </div>
-        <button class="btn-admin" (click)="addNew()">Add New</button>
+        <button class="btn-admin" (click)="addNew()">
+          <i class="fi fi-br-add"></i>
+        </button>
       }
   </main>
 </body>

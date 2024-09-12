@@ -17,7 +17,7 @@ export class ParkingStateComponent {
   title: string = 'TUParking';
  
   tableHeader = {
-    c1: 'Spot Number',
+    c1: 'N°',
     c2: 'Availability',
     c3: 'Entry hours',
     c4: 'Actions'
