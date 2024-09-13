@@ -1,0 +1,48 @@
+@use "./colors.scss";
+
+table {
+  margin: 20px auto;
+  thead,
+  tr {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 1fr;
+    min-width: 600px;
+    justify-items: center;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid colors.$font-color;
+  }
+  thead {
+    font-weight: bold;
+  }
+  tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .actions-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      width: 50px;
+      display: grid;
+      align-items: center;
+      img {
+        width: 80%;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.available, .occupied {
+  background-color: colors.$success-color;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: colors.$inverted-font-color;
+  pointer-events: none;
+  .occupied {
+  background-color: colors.$warning-color;
+  }
+}
+
+

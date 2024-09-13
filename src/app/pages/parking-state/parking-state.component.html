@@ -1,77 +1,50 @@
-<body>
-  <header>
-      <div class="logo-container">
-          <p class="logo">PARKING APP</p>
-      </div>
-      <div class="header-info-container">
-          <p class="page">Parking State</p>
-          <a class="profile-icon">
-              <img src="./../../../assets/images/user.svg" alt="User icon">
-          </a>
-      </div>
-  
-  
-  </header>
-  <main>
-        
-      @if (parking.length !== 0){
-        <div class="table-container">
-          <table class="parking-table">
-            <thead>
-              <tr>
-                <th>{{tableHeader.c1}}</th>
-                <th>{{tableHeader.c2}}</th>
-                <th>{{tableHeader.c3}}</th>
-                <th>{{tableHeader.c4}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (spot of parking; track $index) {
-                <tr>
-                  <td>{{spot.number}}</td>
-                  <td [ngClass]="{'available': spot.available}">{{spot.available ? 'Available' : 'Occupied'}}</td>
-                  <td>{{spot.entry}}</td>
-                  <td>
-                    <div class="actions-container">
-                      @if (spot.available)
-                      {
-                        <button (click)="occupyParkingState($index)">Occupy</button>
-                      } @else {
-                        <button (click)="setFreeParkingState($index)">Vacate</button>
-                      }
-                      <button class="btn-deleteThat" (click)="deleteThatSpot($index)">
-                        <i class="fi fi-rr-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+<a [routerLink]="['/login']">Log out</a>
+
+<main class="flex-column-center">
+    <table>
+      <thead>
+        <td>{{ tableHeader.c1 }}</td>
+        <td>{{ tableHeader.c2 }}</td>
+        <td>{{ tableHeader.c3 }}</td>
+        <td>{{ tableHeader.c4 }}</td>
+      </thead>
+      <tbody>
+        @for (parking of parkinsDataService.parkings; track $index) {
+        <tr>
+          <td>{{ parking.number }}</td>
+          <td>
+            <span [ngClass]="{available: parking.available, occupied: !parking.available}">
+              {{ parking.available ? "Available" : "Occupied" }}
+            </span>
+          </td>
+          
+          <td>{{ parking.entry }}</td>
+          <td class="actions-container">
+            <div>
+              @if (parking.available) {
+              <button (click)="disableParking($index)">Occupy</button>
+              } @else {
+              <button (click)="enableParking($index)">Vacate</button>
+              } 
+
+              @if (isAdmin)
+              {
+                <button class="btn-deleteThat" (click)="deleteParkingAlert($index)">
+                  <i class="fi fi-rr-trash"></i>
+                </button>
               }
-            </tbody>
-          </table>
-        </div>
-        
-      <div class="btn-container">
-        <button class="btn-admin" (click)="addNew()">
-          <i class="fi fi-br-add"></i>
-        </button>
-        <button class="btn-admin" (click)="deleteAll()">Delete All</button>
-      </div>
-      } @else {
-        <div class="table-container">
-          <table class="parking-table">
-            <thead>
-              <tr>
-                <th>{{tableHeader.c1}}</th>
-                <th>{{tableHeader.c2}}</th>
-                <th>{{tableHeader.c3}}</th>
-                <th>{{tableHeader.c4}}</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        <button class="btn-admin" (click)="addNew()">
-          <i class="fi fi-br-add"></i>
-        </button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    @if(isAdmin){
+      <button (click)="addParking()" class="btn-admin" id="agregar-cochera">
+        +
+      </button>
+      @if (parkinsDataService.parkings.length != 0) {
+        <button class="btn-admin" (click)="deleteAllAlert()">all</button>
       }
-  </main>
-</body>
+      }
+</main>
