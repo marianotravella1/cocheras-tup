@@ -1,7 +1,17 @@
 @use "./colors.scss";
+main {
+  display: flex;
+  align-items: center;
+}
 
-table {
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px auto;
+  border: solid;
+  border-radius: 15px;
+  
   thead,
   tr {
     display: grid;
@@ -10,39 +20,76 @@ table {
     justify-items: center;
     align-items: center;
     height: 50px;
-    border-bottom: 1px solid colors.$font-color;
+  }
+  tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
   }
   thead {
     font-weight: bold;
+    font-size: 1.5rem;
+    border-bottom: solid;
   }
-  tr:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  tbody tr {
+    border-bottom: solid 1px;
   }
   .actions-container {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: space-around;
     button {
-      width: 50px;
-      display: grid;
+      display: flex;
+      justify-content: center;
       align-items: center;
+      margin: 0 10px; 
+      padding: 0;
+      background: none;
       img {
-        width: 80%;
-        margin: auto;
+        width: 30px;
+        padding: 5px;
+        border-radius: 10px;
+      }
+      
+      .occupy-img {
+        background-color: colors.$available-color;
+      }
+
+      .vacate-img {
+        background-color: colors.$occupied-color;
+      }
+      .delete-img {
+        background-color: red;
       }
     }
   }
 }
 
-.available, .occupied {
-  background-color: colors.$success-color;
-  padding: 5px 10px;
-  border-radius: 15px;
-  color: colors.$inverted-font-color;
-  pointer-events: none;
-  .occupied {
-  background-color: colors.$warning-color;
+.btn-admin-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .btn-add {
+    background: none;
+    img {
+      width: 40px;
+    }
+  }
+  .delete-all {
+    padding: 10px 15px;
+      background-color: red;
+      border-radius: 7px;
+      color: colors.$font-color;
+      font-size: 1rem;
   }
 }
+
+.available, .occupied {
+  background-color: colors.$available-color;
+  padding: 10px;
+  border-radius: 10px;
+  pointer-events: none;
+  
+}
+.occupied {
+  background-color: colors.$occupied-color;
+  }
 
 

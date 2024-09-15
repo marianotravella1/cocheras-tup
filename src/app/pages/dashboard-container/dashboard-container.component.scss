@@ -1,0 +1,36 @@
+@use "./../../../../Public/styles/colors.scss";
+
+header {
+	background-color: colors.$bg-color;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+    min-height: 15vh;
+    h1 {
+        color: colors.$font-color;
+        font-size: 3.5rem;
+        user-select: none;
+
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        a{
+            color: colors.$font-color;
+            padding: 15px;
+            border: solid colors.$border-color 2px;
+            border-radius: 5px;
+            margin:0 8px 0 8px;
+            cursor: pointer;
+            transition: 0.125s;
+            user-select: none;
+            &:hover {
+                opacity: 0.7;
+            }
+            &:active {
+                opacity: 0.4
+            }
+        }
+    };
+    
+}

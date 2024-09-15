@@ -9,6 +9,6 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './dashboard-container.component.scss'
 })
 export class DashboardContainerComponent {
-  esAdmin = true
+  isAdmin = true
 
 }

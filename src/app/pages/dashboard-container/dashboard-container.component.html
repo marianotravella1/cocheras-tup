@@ -1,14 +1,13 @@
-
 <header>
-    <h1>Parking App</h1>
-    <nav>
-        <a [routerLink]="['./login']">Parking State</a>
-        @if (esAdmin == true) 
-        {
-            <a>Reports</a>
-            <a>Prices</a>
-        }
-        <a>User</a>
-    </nav>
+    <h1>ParkingApp</h1>
+  <nav>
+      <a [routerLink]="['/parking-state']">Parking State</a>
+      @if (isAdmin == true) {
+      <a>Reports</a>
+      <a>Prices</a>
+      }
+      <a>User</a>
+      <a [routerLink]="['/login']">Log out</a>
+  </nav>
 </header>
-<router-outlet/>
+<router-outlet />

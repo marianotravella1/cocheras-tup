@@ -1,6 +1,5 @@
-<a [routerLink]="['/login']">Log out</a>
-
-<main class="flex-column-center">
+<main>
+  <div class="table-container">
     <table>
       <thead>
         <td>{{ tableHeader.c1 }}</td>
@@ -13,25 +12,30 @@
         <tr>
           <td>{{ parking.number }}</td>
           <td>
-            <span [ngClass]="{available: parking.available, occupied: !parking.available}">
+            <span
+              [ngClass]="{
+                available: parking.available,
+                occupied: !parking.available
+              }">
               {{ parking.available ? "Available" : "Occupied" }}
             </span>
           </td>
-          
-          <td>{{ parking.entry }}</td>
-          <td class="actions-container">
-            <div>
-              @if (parking.available) {
-              <button (click)="disableParking($index)">Occupy</button>
-              } @else {
-              <button (click)="enableParking($index)">Vacate</button>
-              } 
 
-              @if (isAdmin)
-              {
-                <button class="btn-deleteThat" (click)="deleteParkingAlert($index)">
-                  <i class="fi fi-rr-trash"></i>
-                </button>
+          <td>{{ parking.entry }}</td>
+          <td>
+            <div class="actions-container">
+              @if (parking.available) {
+              <button  title="Occupy" (click)="disableParking($index)">
+                <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" alt="Occupy"/>
+              </button>
+              } @else {
+              <button title="Vacate" (click)="enableParking($index)">
+                <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" alt="Vacate"/>
+              </button>
+              } @if (isAdmin) {
+              <button title="Delete parking" (click)="deleteParkingAlert($index)">
+                <img class="delete-img" src="./../../../assets/images/trash.svg" alt="Delete">
+              </button>
               }
             </div>
           </td>
@@ -40,11 +44,16 @@
       </tbody>
     </table>
     @if(isAdmin){
-      <button (click)="addParking()" class="btn-admin" id="agregar-cochera">
-        +
-      </button>
-      @if (parkinsDataService.parkings.length != 0) {
-        <button class="btn-admin" (click)="deleteAllAlert()">all</button>
-      }
-      }
+      <div class="btn-admin-container">
+        <button (click)="addParking()" class="btn-add" id="agregar-cochera">
+          <img src="./../../../assets/images/add.svg" alt="+">
+        </button>
+        @if (parkinsDataService.parkings.length != 0) {
+        <button class="delete-all" (click)="deleteAllAlert()">
+          Delete All
+        </button>
+        } 
+      </div>
+     }
+  </div>
 </main>
