@@ -28,6 +28,7 @@ main {
     font-weight: bold;
     font-size: 1.5rem;
     border-bottom: solid;
+    background-color: rgb(231, 205, 255);
   }
   tbody tr {
     border-bottom: solid 1px;
@@ -46,17 +47,36 @@ main {
         width: 30px;
         padding: 5px;
         border-radius: 10px;
+        transition: .125s;
       }
       
       .occupy-img {
         background-color: colors.$available-color;
+        &:hover {
+          background-color: rgb(0, 202, 0);
+        }
+        &:active {
+          background-color: rgb(0, 178, 0);
+        }
       }
-
+      
       .vacate-img {
         background-color: colors.$occupied-color;
+        &:hover {
+          background-color: rgb(255, 187, 0);
+        }
+        &:active {
+          background-color: rgb(231, 170, 0);
+        }
       }
       .delete-img {
         background-color: red;
+        &:hover {
+          background-color: rgb(207, 0, 0);
+        }
+        &:active {
+          background-color: rgb(186, 0, 0);
+        }
       }
     }
   }
@@ -65,9 +85,18 @@ main {
 .btn-admin-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
   .btn-add {
+    padding: 0;
     background: none;
+    margin: 10px;
+    transition: 0.125s;
+    &:hover {
+      opacity: 0.7;
+    }
+    &:active {
+      opacity: 0.4;
+    }
     img {
       width: 40px;
     }
@@ -78,6 +107,15 @@ main {
       border-radius: 7px;
       color: colors.$font-color;
       font-size: 1rem;
+      margin: 10px;
+      transition: 0.125s;
+
+      &:hover {
+        background-color: rgb(201, 0, 0);
+      }
+      &:active {
+        background-color: rgb(165, 0, 0);
+      }
   }
 }
 

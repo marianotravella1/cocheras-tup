@@ -45,7 +45,7 @@
     </table>
     @if(isAdmin){
       <div class="btn-admin-container">
-        <button (click)="addParking()" class="btn-add" id="agregar-cochera">
+        <button (click)="addParking()" class="btn-add" title="Add parking">
           <img src="./../../../assets/images/add.svg" alt="+">
         </button>
         @if (parkinsDataService.parkings.length != 0) {

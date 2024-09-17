@@ -21,7 +21,7 @@ export class ParkingStateComponent {
   };
 
   parkings: IParking[] = [];
-  isAdmin = true;
+  isAdmin = true  ;
 
   parkinsDataService = inject(ParkingsDataService);
 
