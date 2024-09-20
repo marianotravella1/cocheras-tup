@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IParking } from '../../interfaces/IParking';
 import { ParkingsDataService } from '../../services/parkings-data.service';
 import Swal from 'sweetalert2';
+import { DataAuthService } from '../../services/data-auth.service';
 
 @Component({
   selector: 'app-parking-state',
@@ -22,8 +23,9 @@ export class ParkingStateComponent {
 
   parkings: IParking[] = [];
   isAdmin = true  ;
-
+  
   parkinsDataService = inject(ParkingsDataService);
+  authService = inject(DataAuthService)
 
   constructor() {
     this.parkings = this.parkinsDataService.parkings;
@@ -76,4 +78,16 @@ export class ParkingStateComponent {
     });
   }
 
-}
+  async getCocheras() {
+    const res = await fetch("http://localhost:4000/cocheras", {
+      headers: {
+        "Authorization": "Bearer "+this.authService.usuario?.token
+      },
+    })
+    if (res.status !== 200) return;
+    const resJson:IParking[] = await res.json();
+    //this.router.navigate(["./parking-state"]);
+    }
+  }
+
+

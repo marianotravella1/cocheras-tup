@@ -45,7 +45,7 @@
       />
       <div class="error-message">Minimum 6 characters at least 1 Alphabet and 1 number</div>
     </div>
-    <button [routerLink]="['/parking-state']" type="submit" class="my-form__button">
+    <button (click)="login()" type="button" class="my-form__button">
       <a>Log in</a>
     </button>
     <div class="my-form__actions">
