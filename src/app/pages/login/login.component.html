@@ -1,5 +1,5 @@
 <main>
-  <form class="login-box">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-box">
     <div class="title-row">
       <div class="welcome-message">
         <h1>Welcome!</h1>
@@ -21,31 +21,14 @@
       <div class="line"></div>
     </div>
     <div class="text-field">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        autocomplete="off"
-        placeholder="you@example.com"
-        required
-      />
-      <div class="error-message">Email in incorrect format</div>
+      <label for="email">Username</label>
+      <input type="text" id="usuario" name="usuario" placeholder="Username" ngModel required/>
     </div>
     <div class="text-field">
       <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        placeholder="Your Password"
-        title="Minimum 6 characters at least 1 Alphabet and 1 number"
-        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
-        required
-      />
-      <div class="error-message">Minimum 6 characters at least 1 Alphabet and 1 number</div>
+      <input id="password" type="password" name="password" placeholder="Password" ngModel required/>
     </div>
-    <button (click)="login()" type="button" class="my-form__button">
+    <button [disabled]="loginForm.invalid" type="submit" class="my-form__button">"
       <a>Log in</a>
     </button>
     <div class="my-form__actions">

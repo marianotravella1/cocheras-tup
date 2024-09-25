@@ -21,15 +21,10 @@ export class ParkingStateComponent {
     c4: 'Actions',
   };
 
-  parkings: IParking[] = [];
-  isAdmin = true  ;
-  
+  authService = inject(DataAuthService);
   parkinsDataService = inject(ParkingsDataService);
-  authService = inject(DataAuthService)
 
-  constructor() {
-    this.parkings = this.parkinsDataService.parkings;
-  }
+  isAdmin = true;
 
   addParking() {
     this.parkinsDataService.addParking();
@@ -39,7 +34,7 @@ export class ParkingStateComponent {
     this.parkinsDataService.deleteRow(index);
   }
 
-  deleteAll(){
+  deleteAll() {
     this.parkinsDataService.deleteAll();
   }
 
@@ -51,7 +46,6 @@ export class ParkingStateComponent {
     this.parkinsDataService.enableParking(index);
   }
 
-
   deleteParkingAlert(index: number) {
     Swal.fire({
       title: 'Do you want to delete this parking?',
@@ -61,7 +55,7 @@ export class ParkingStateComponent {
       if (result.isConfirmed) {
         this.deleteRow(index);
         Swal.fire('Parking deleted!', '', 'success');
-      } 
+      }
     });
   }
 
@@ -74,20 +68,7 @@ export class ParkingStateComponent {
       if (result.isConfirmed) {
         this.deleteAll();
         Swal.fire('Parkings deleted!', '', 'success');
-      } 
+      }
     });
   }
-
-  async getCocheras() {
-    const res = await fetch("http://localhost:4000/cocheras", {
-      headers: {
-        "Authorization": "Bearer "+this.authService.usuario?.token
-      },
-    })
-    if (res.status !== 200) return;
-    const resJson:IParking[] = await res.json();
-    //this.router.navigate(["./parking-state"]);
-    }
-  }
-
-
+}

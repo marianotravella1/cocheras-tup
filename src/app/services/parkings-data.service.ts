@@ -1,24 +1,41 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { IParking } from "../interfaces/IParking";
+import { DataAuthService } from "./data-auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ParkingsDataService {
     parkings: IParking[] = []
+    authService = inject(DataAuthService)
 
-    constructor() { }
+    constructor() { 
 
-    lastNumber = this.parkings[this.parkings.length-1]?.number || 0; // '?' -> if the element exists, an attempt is made to access the number property
+    this.getParkings()
+   }
+
+  async getParkings() {
+    const res = await fetch('http://localhost:4000/cocheras',{
+      headers: {
+        authorization:'Bearer '+this.authService.usuario?.token
+      },
+    })
+    if(res.status !== 200) return;
+    const resJson: IParking [] = await res.json();
+    console.log(resJson);
+    this.parkings = resJson;
+  }
+
+    lastNumber = this.parkings[this.parkings.length-1]?.id || 0; // '?' -> if the element exists, an attempt is made to access the number property
     // (another use for '?' (ternary operator))
     // lastNumber = this.parkings.length === 0 ? 0 : this.parkings[this.parkings.length-1].number;
 
     addParking(){
         this.parkings.push({
-            number: this.lastNumber + 1,
-            available: true,
-            entry: "-",
-            isBig: true
+            id: this.lastNumber + 1,
+            descripcion: "",
+            deshabilitada: 0,
+            eliminada: 0
         })
         this.lastNumber++;
     }
@@ -33,10 +50,10 @@ export class ParkingsDataService {
       }
 
     disableParking(index:number){
-        this.parkings[index].available = false;
+        this.parkings[index].deshabilitada = 0;
     }
 
     enableParking(index:number){
-        this.parkings[index].available = true;
+        this.parkings[index].deshabilitada = 1;
     }
 }

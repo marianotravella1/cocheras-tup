@@ -10,21 +10,21 @@
       <tbody>
         @for (parking of parkinsDataService.parkings; track $index) {
         <tr>
-          <td>{{ parking.number }}</td>
+          <td>{{ parking.id }}</td>
           <td>
             <span
               [ngClass]="{
-                available: parking.available,
-                occupied: !parking.available
+                available: parking.deshabilitada,
+                occupied: !parking.deshabilitada
               }">
-              {{ parking.available ? "Available" : "Occupied" }}
+              {{ parking.deshabilitada ? "Available" : "Occupied" }}
             </span>
           </td>
 
-          <td>{{ parking.entry }}</td>
+          <td>{{ parking.descripcion }}</td>
           <td>
             <div class="actions-container">
-              @if (parking.available) {
+              @if (parking.deshabilitada) {
               <button  title="Occupy" (click)="disableParking($index)">
                 <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" alt="Occupy"/>
               </button>
@@ -56,5 +56,4 @@
       </div>
      }
   </div>
-  <button (click)="getCocheras()">GET COCHERAS</button>
 </main>

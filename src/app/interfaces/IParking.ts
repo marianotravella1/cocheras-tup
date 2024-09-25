@@ -1,7 +1,7 @@
 export interface IParking {
-    number: number;
-    available: boolean;
-    entry: string;
-    isBig: boolean;
+    id: number;
+    descripcion: string;
+    deshabilitada: number;
+    eliminada: number;
 }
 
