@@ -1,0 +1,58 @@
+<main>
+  <form class="login-box">
+    <div class="title-row">
+      <div class="welcome-message">
+        <h1>Sign Up</h1>
+      </div>
+    </div>
+    <div class="text-fields">
+      <div class="text-fields-columns">
+        <div class="column">
+          <div class="text-field">
+            <label for="name">Name</label>
+            <input type="text" id="nombre" name="Nombre" placeholder="Your Name" ngModel required/>
+          </div>
+          <div class="text-field">
+            <label for="username">Username</label>
+            <input type="text" id="usuario" name="usuario" placeholder="your_username" ngModel required/>
+          </div>
+          <div class="text-field">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Password" ngModel required/>
+          </div>
+        </div>
+        <div class="column">
+          <div class="text-field">
+            <label for="name">Surname (Optional)</label>
+            <input type="text" id="nombre" name="Nombre" placeholder="Your Surname" ngModel required/>
+          </div>
+          <div class="text-field">
+            <label for="username">Select Gender</label>
+            <select id="gender" name="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="text-field">
+            <label for="password">Confirm Password</label>
+            <input id="password" type="password" name="password" placeholder="Password" ngModel required/>
+          </div>
+        </div>
+      </div>
+      <div class="text-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your-email@example.com" ngModel required/>
+      </div>
+    </div>
+    <button type="submit" class="my-form__button">
+      <a>Create Account</a>
+    </button>
+    <div class="my-form__actions">
+      <div class="my-form__row">
+        <span>Already have an account?</span>
+        <a [routerLink]="['/login']" title="Create Account"> Log in </a>
+      </div>
+    </div>
+  </form>
+</main>

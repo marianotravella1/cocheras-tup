@@ -34,7 +34,7 @@ export class ParkingsDataService {
         this.parkings.push({
             id: this.lastNumber + 1,
             descripcion: "",
-            deshabilitada: 0,
+            deshabilitada: 1,
             eliminada: 0
         })
         this.lastNumber++;

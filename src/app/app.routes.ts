@@ -7,6 +7,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { soloPublicoGuard } from './guards/solo-publico.guard';
 import { soloAdminGuard } from './guards/solo-admin.guard';
 import { soloLoggedGuard } from './guards/solo-logged.guard';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,10 @@ export const routes: Routes = [
     {
         path: "not-found",
         component: NotFoundComponent
+    },
+    {
+        path: "register",
+        component: RegisterComponent
     },
     {
         path: "**",

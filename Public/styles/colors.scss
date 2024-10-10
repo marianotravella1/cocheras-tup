@@ -1,9 +1,41 @@
-$primary-color : #034cbe;
-$font-color: #fff;
+// Dark Mode colors
+$dm-primary : #BB86FC;
+$dm-primary-variant: #3700B3;
+$dm-secondary: #03DAC5;
+$dm-bg: #121212;
+$dm-surface: #121212;
+$dm-error: #CF6679;
+
+// Dark Mode font colors
+$dm-on-primary: #000000;
+$dm-on-secondary: #000000;
+$dm-on-background: #FFFFFF;
+$dm-on-surface: #FFFFFF;
+$dm-on-error: #000000;
+
+// Light Mode colors
+$lm-primary : #6200EE;
+$lm-primary-variant: #3700B3;
+$lm-secondary: #03DAC5;
+$lm-bg: #FFFFFF;
+$lm-surface: #FFFFFF;
+$lm-error: #B00020;
+
+// Light Mode font colors
+$lm-on-primary: #FFFFFF;
+$lm-on-secondary: #000000;
+$lm-on-background: #000000;
+$lm-on-surface: #000000;
+$lm-on-error: #FFFFFF;
+
+
+
+$box-color: #1F1F1F;
+$font-color: #E1E1E1;
 $border-color: #fff;
 $inverted-font-color: #000;
 $success-color: rgb(23, 216, 23);
 $warning-color: rgb(219, 24, 24);
-$bg-color: #333;
+$bg-color: #fff;
 $available-color: greenyellow;
 $occupied-color: yellow;    

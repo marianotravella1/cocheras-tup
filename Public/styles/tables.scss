@@ -1,7 +1,9 @@
 @use "./colors.scss";
 main {
+  height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  background-color: colors.$dm-bg;
 }
 
 .table-container {
@@ -9,7 +11,8 @@ main {
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
-  border: solid;
+  border: solid colors.$dm-on-background;
+  overflow: hidden;
   border-radius: 15px;
   
   thead,
@@ -25,10 +28,11 @@ main {
     background-color: rgba(0, 0, 0, 0.03);
   }
   thead {
+    color: colors.$dm-on-primary;
     font-weight: bold;
     font-size: 1.5rem;
     border-bottom: solid;
-    background-color: rgb(231, 205, 255);
+    background-color: colors.$dm-primary;
   }
   tbody tr {
     border-bottom: solid 1px;
@@ -88,8 +92,12 @@ main {
   flex-direction: column;
   align-items: center;
   .btn-add {
-    padding: 0;
-    background: none;
+    display: flex;
+    align-items: center;
+    background-color: colors.$dm-on-background;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 3px;
     margin: 10px;
     transition: 0.125s;
     cursor: pointer;

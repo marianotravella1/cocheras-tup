@@ -1,13 +1,13 @@
 @use "./../../../../Public/styles/colors.scss";
 
 header {
-	background-color: colors.$bg-color;
+	background-color: colors.$dm-bg;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
     min-height: 15vh;
     h1 {
-        color: colors.$font-color;
+        color: colors.$dm-on-background;
         font-size: 3.5rem;
         user-select: none;
 
