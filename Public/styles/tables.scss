@@ -1,9 +1,14 @@
 @use "./colors.scss";
 main {
-  height: 100vh;
+  height: 100%;
+  overflow-y: auto;
   display: flex;
   align-items: flex-start;
-  background-color: colors.$dm-bg;
+  background-image: url("./../../src/assets/images/parking.jpg");
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-blend-mode: overlay;
 }
 
 .table-container {
@@ -11,10 +16,17 @@ main {
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
-  border: solid colors.$dm-on-background;
+  border: none;
   overflow: hidden;
   border-radius: 15px;
-  
+  background-color: rgba(colors.$dm-surface,0.5);
+  backdrop-filter: blur(5px); 
+  user-select: none;
+
+
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.75);
+
+
   thead,
   tr {
     display: grid;
@@ -23,19 +35,31 @@ main {
     justify-items: center;
     align-items: center;
     height: 50px;
+    transition: 0.1s;
+
+    &:nth-child(even) {
+      background-color: rgba(colors.$dm-surface,0.3);
+    }
   }
   tr:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: darken($color: colors.$dm-surface , $amount: 20%)
   }
   thead {
-    color: colors.$dm-on-primary;
+    color: colors.$dm-on-surface;
     font-weight: bold;
     font-size: 1.5rem;
-    border-bottom: solid;
-    background-color: colors.$dm-primary;
+    border-bottom: solid darken($color: colors.$dm-border, $amount: 5%);
+    background-color: rgba(colors.$dm-surface,0.5);
+    backdrop-filter: blur(5px); 
+
   }
   tbody tr {
-    border-bottom: solid 1px;
+    color: colors.$dm-on-surface;
+    border-bottom: solid 1px colors.$dm-border;
+    td span {
+      color: colors.$dm-on-primary;
+      font-weight: 700;
+    }
   }
   .actions-container {
     display: flex;
@@ -44,43 +68,47 @@ main {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 10px; 
+      margin: 0 10px;
       padding: 0;
       background: none;
       cursor: pointer;
+
       img {
         width: 30px;
         padding: 5px;
         border-radius: 10px;
-        transition: .125s;
+        transition: 0.1s;
       }
-      
+
       .occupy-img {
         background-color: colors.$available-color;
         &:hover {
-          background-color: rgb(0, 202, 0);
+          background-color: darken($color: colors.$available-color, $amount: 10%);
         }
         &:active {
-          background-color: rgb(0, 178, 0);
+          background-color: darken($color: colors.$available-color, $amount: 20%);
         }
       }
-      
+
       .vacate-img {
         background-color: colors.$occupied-color;
         &:hover {
-          background-color: rgb(255, 187, 0);
+          background-color: darken($color: colors.$occupied-color, $amount: 10%);
+
         }
         &:active {
-          background-color: rgb(231, 170, 0);
+          background-color: darken($color: colors.$occupied-color, $amount: 20%);
         }
       }
       .delete-img {
-        background-color: red;
+        background-color: colors.$dm-error;
         &:hover {
-          background-color: rgb(207, 0, 0);
+          background-color: darken($color: colors.$dm-error, $amount: 10%);
+
         }
         &:active {
-          background-color: rgb(186, 0, 0);
+          background-color: darken($color: colors.$dm-error, $amount: 20%);
+
         }
       }
     }
@@ -95,6 +123,7 @@ main {
     display: flex;
     align-items: center;
     background-color: colors.$dm-on-background;
+
     border-radius: 50%;
     overflow: hidden;
     padding: 3px;
@@ -102,10 +131,10 @@ main {
     transition: 0.125s;
     cursor: pointer;
     &:hover {
-      opacity: 0.7;
+      background-color: darken($color: colors.$dm-on-background, $amount: 30%);
     }
     &:active {
-      opacity: 0.4;
+      background-color: darken($color: colors.$dm-on-background, $amount: 50%);
     }
     img {
       width: 40px;
@@ -113,32 +142,32 @@ main {
   }
   .delete-all {
     padding: 10px 15px;
-      background-color: red;
-      border-radius: 7px;
-      color: colors.$font-color;
-      font-size: 1rem;
-      margin: 10px;
-      cursor: pointer;
-      transition: 0.125s;
+    background-color: colors.$dm-error;
+    border-radius: 7px;
+    color: colors.$dm-on-error;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.125s;
 
-      &:hover {
-        background-color: rgb(201, 0, 0);
-      }
-      &:active {
-        background-color: rgb(165, 0, 0);
-      }
+    &:hover {
+      background-color: darken($color: colors.$dm-error, $amount: 10%);
+
+    }
+    &:active {
+      background-color: darken($color: colors.$dm-error, $amount: 20%);
+    }
   }
 }
 
-.available, .occupied {
+.available,
+.occupied {
   background-color: colors.$available-color;
   padding: 10px;
   border-radius: 10px;
   pointer-events: none;
-  
 }
 .occupied {
   background-color: colors.$occupied-color;
-  }
-
-
+}

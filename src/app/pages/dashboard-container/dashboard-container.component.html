@@ -1,13 +1,17 @@
-<header>
-    <h1>ParkingApp</h1>
-  <nav>
-      <a [routerLink]="['/parking-state']">Parking State</a>
+<div class="dashboard-container">
+  <header>
+      <h1>ParkingApp</h1>
+    <nav>
       @if (isAdmin == true) {
-      <a>Reports</a>
-      <a>Prices</a>
-      }
-      <a>User</a>
-      <a [routerLink]="['/login']">Log out</a>
-  </nav>
-</header>
-<router-outlet />
+        <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>
+        <a [routerLink]="['/reports']" draggable="false">Reports</a>
+        <a [routerLink]="['/prices']" draggable="false">Prices</a>
+        }
+        <a [routerLink]="['/login']" draggable="false">Log out</a>
+        <a>User</a>
+    </nav>
+  </header>
+  <main>
+    <router-outlet />
+  </main>
+</div>

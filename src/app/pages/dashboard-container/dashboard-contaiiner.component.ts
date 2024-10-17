@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { DataAuthService } from '../../services/data-auth.service';
 
 @Component({
   selector: 'app-dashboard-container',
@@ -9,6 +10,11 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './dashboard-container.component.scss'
 })
 export class DashboardContainerComponent {
-  isAdmin = true
+  authService = inject(DataAuthService)
+  isAdmin: Boolean | undefined
+  
+  constructor() {
+    this.isAdmin = this.authService.usuario?.isAdmin;
+  }
 
 }

@@ -26,15 +26,15 @@
             <div class="actions-container">
               @if (parking.deshabilitada) {
               <button  title="Occupy" (click)="disableParking($index)">
-                <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" alt="Occupy"/>
+                <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
               </button>
               } @else {
               <button title="Vacate" (click)="enableParking($index)">
-                <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" alt="Vacate"/>
+                <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
               </button>
               } @if (isAdmin) {
               <button title="Delete parking" (click)="deleteParkingAlert($index)">
-                <img class="delete-img" src="./../../../assets/images/trash.svg" alt="Delete">
+                <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
               </button>
               }
             </div>
@@ -46,7 +46,7 @@
     @if(isAdmin){
       <div class="btn-admin-container">
         <button (click)="addParking()" class="btn-add" title="Add parking">
-          <img src="./../../../assets/images/add.svg" alt="+">
+          <img src="./../../../assets/images/add.svg" draggable="false" alt="+">
         </button>
         @if (parkinsDataService.parkings.length != 0) {
         <button class="delete-all" (click)="deleteAllAlert()">

@@ -17,7 +17,7 @@ export class ParkingStateComponent {
   tableHeader = {
     c1: 'N°',
     c2: 'Availability',
-    c3: 'Entry hours',
+    c3: 'Description',
     c4: 'Actions',
   };
 

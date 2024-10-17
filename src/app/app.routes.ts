@@ -8,6 +8,7 @@ import { soloPublicoGuard } from './guards/solo-publico.guard';
 import { soloAdminGuard } from './guards/solo-admin.guard';
 import { soloLoggedGuard } from './guards/solo-logged.guard';
 import { RegisterComponent } from './pages/register/register.component';
+import { PricesComponent } from './pages/prices/prices.component';
 
 
 export const routes: Routes = [
@@ -33,13 +34,8 @@ export const routes: Routes = [
         canActivate: [soloPublicoGuard]
     },
     {
-        path: "parking-state",
-        component: ParkingStateComponent
-    },
-    {
-        path: "",
-        redirectTo: "login",
-        pathMatch: "full"
+        path: "prices",
+        component: PricesComponent
     },
     {
         path: "not-found",

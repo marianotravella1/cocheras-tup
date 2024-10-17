@@ -1,6 +1,14 @@
 @use "./../../../../Public/styles/colors.scss";
 
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ocupar el 100% del alto de la pantalla */
+  }
+
+
 header {
+    flex-shrink: 0; /* El header no cambia de tamaño */
 	background-color: colors.$dm-bg;
 	display: flex;
 	justify-content: space-around;
@@ -34,3 +42,8 @@ header {
     };
     
 }
+main {
+    flex-grow: 1; /* El contenido crece para llenar el espacio disponible */
+    overflow-y: auto; /* Asegura que el contenido sea scrollable solo dentro del espacio disponible */
+  }
+

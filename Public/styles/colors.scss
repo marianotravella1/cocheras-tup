@@ -3,8 +3,10 @@ $dm-primary : #BB86FC;
 $dm-primary-variant: #3700B3;
 $dm-secondary: #03DAC5;
 $dm-bg: #121212;
-$dm-surface: #121212;
+
+$dm-surface: #484848;
 $dm-error: #CF6679;
+$dm-border: #333333;
 
 // Dark Mode font colors
 $dm-on-primary: #000000;
@@ -20,6 +22,8 @@ $lm-secondary: #03DAC5;
 $lm-bg: #FFFFFF;
 $lm-surface: #FFFFFF;
 $lm-error: #B00020;
+$lm-border: #272727b9;
+
 
 // Light Mode font colors
 $lm-on-primary: #FFFFFF;
@@ -38,4 +42,4 @@ $success-color: rgb(23, 216, 23);
 $warning-color: rgb(219, 24, 24);
 $bg-color: #fff;
 $available-color: greenyellow;
-$occupied-color: yellow;    
+$occupied-color: rgb(54, 106, 183);    
