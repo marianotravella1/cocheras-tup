@@ -24,7 +24,7 @@ export class LoginComponent {
     const loginData = {username, password};
 
     const res = await this.authService.login(loginData);
-    
+
     if (res?.statusText === 'OK') this.router.navigate(['/parking-state']);
     else this.errorLogin = true;
   }

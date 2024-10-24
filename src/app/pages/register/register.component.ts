@@ -19,7 +19,7 @@ export class RegisterComponent {
   async register(registerForm: NgForm) {
     const { username, name, lastName, password } = registerForm.value;
     const registerData = { username, name, lastName, password };
-
+    console.log(registerData);
     const res = await this.authService.register(registerData);
 
     if (res?.statusText === 'Created') {
