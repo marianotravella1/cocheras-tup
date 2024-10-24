@@ -48,7 +48,7 @@
         <button (click)="addParking()" class="btn-add" title="Add parking">
           <img src="./../../../assets/images/add.svg" draggable="false" alt="+">
         </button>
-        @if (parkinsDataService.parkings.length != 0) {
+        @if (parkinsDataService.parkings.length > 1) {
         <button class="delete-all" (click)="deleteAllAlert()">
           Delete All
         </button>

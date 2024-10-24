@@ -13,16 +13,19 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class LoginComponent {
 
-  router = inject(Router);
   authService = inject(DataAuthService);
 
+  router = inject(Router);
+  
   errorLogin = false;
 
   async login(loginForm: NgForm) {
-    const {usuario, password} = loginForm.value;
-    const loginData: ILogin = {username: usuario, password}
+    const {username, password} = loginForm.value;
+    const loginData = {username, password};
+
     const res = await this.authService.login(loginData);
-    if (res?.status === 'ok') this.router.navigate(['/parking-state']);
+    
+    if (res?.statusText === 'OK') this.router.navigate(['/parking-state']);
     else this.errorLogin = true;
   }
 }

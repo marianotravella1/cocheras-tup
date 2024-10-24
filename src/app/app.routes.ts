@@ -22,6 +22,10 @@ export const routes: Routes = [
                 component: ParkingStateComponent
             },
             {
+                path: "prices",
+                component: PricesComponent
+            },
+            {
                 path: "reports",
                 component: ReportsComponent,
                 canActivate: [soloAdminGuard]
@@ -34,16 +38,13 @@ export const routes: Routes = [
         canActivate: [soloPublicoGuard]
     },
     {
-        path: "prices",
-        component: PricesComponent
+        path: "register",
+        component: RegisterComponent,
+        canActivate: [soloPublicoGuard]
     },
     {
         path: "not-found",
         component: NotFoundComponent
-    },
-    {
-        path: "register",
-        component: RegisterComponent
     },
     {
         path: "**",

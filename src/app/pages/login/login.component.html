@@ -1,5 +1,5 @@
 <main>
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-box">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-box">
     <div class="title-row">
       <div class="welcome-message">
         <h1>Welcome!</h1>
@@ -21,7 +21,7 @@
       <div class="line"></div>
     </div>
     <div class="text-field">
-      <label for="email">Username</label>
+      <label for="email">Username or email</label>
       <input type="text" id="usuario" name="usuario" placeholder="Username" ngModel required/>
     </div>
     <div class="text-field">

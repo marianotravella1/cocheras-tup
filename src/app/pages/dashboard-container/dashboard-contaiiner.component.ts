@@ -11,10 +11,12 @@ import { DataAuthService } from '../../services/data-auth.service';
 })
 export class DashboardContainerComponent {
   authService = inject(DataAuthService)
-  isAdmin: Boolean | undefined
+
+  isAdmin: Boolean | undefined;
   
   constructor() {
-    this.isAdmin = this.authService.usuario?.isAdmin;
+    if (this.authService.usuario) {
+      this.isAdmin = this.authService.usuario.isAdmin;
+    }
   }
-
 }

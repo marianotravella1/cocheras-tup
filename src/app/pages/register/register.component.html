@@ -1,5 +1,5 @@
 <main>
-  <form class="login-box">
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="form-box">
     <div class="title-row">
       <div class="welcome-message">
         <h1>Sign Up</h1>
@@ -45,7 +45,7 @@
         <input type="email" id="email" name="email" placeholder="your-email@example.com" ngModel required/>
       </div>
     </div>
-    <button type="submit" class="my-form__button">
+    <button [disabled]="registerForm.invalid" type="submit" class="my-form__button">
       <a>Create Account</a>
     </button>
     <div class="my-form__actions">

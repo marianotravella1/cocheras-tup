@@ -3,12 +3,12 @@
       <h1>ParkingApp</h1>
     <nav>
       @if (isAdmin == true) {
-        <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>
         <a [routerLink]="['/reports']" draggable="false">Reports</a>
-        <a [routerLink]="['/prices']" draggable="false">Prices</a>
-        }
-        <a [routerLink]="['/login']" draggable="false">Log out</a>
-        <a>User</a>
+      }
+      <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>
+      <a [routerLink]="['/prices']" draggable="false">Prices</a>
+      <a [routerLink]="['/user']" draggable="false">User</a>
+      <a [routerLink]="['/login']" draggable="false">Log out</a>
     </nav>
   </header>
   <main>
