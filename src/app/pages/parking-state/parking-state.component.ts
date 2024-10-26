@@ -14,6 +14,12 @@ import { DataAuthService } from '../../services/data-auth.service';
   styleUrl: './parking-state.component.scss',
 })
 export class ParkingStateComponent {
+  authService = inject(DataAuthService);
+  parkinsDataService = inject(ParkingsDataService);
+
+  isAdmin = this.parkinsDataService.authService.usuario?.isAdmin;
+
+  
   tableHeader = {
     c1: 'N°',
     c2: 'Availability',
@@ -21,10 +27,8 @@ export class ParkingStateComponent {
     c4: 'Actions',
   };
 
-  authService = inject(DataAuthService);
-  parkinsDataService = inject(ParkingsDataService);
 
-  isAdmin = true;
+  
 
   addParking() {
     this.parkinsDataService.addParking();

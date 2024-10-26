@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DataAuthService } from '../../services/data-auth.service';
 import Swal from 'sweetalert2';
+import { IRegister } from '../../interfaces/IRegister';
 
 @Component({
   selector: 'app-register',
@@ -18,14 +19,17 @@ export class RegisterComponent {
 
   async register(registerForm: NgForm) {
     const { username, name, lastName, password } = registerForm.value;
-    const registerData = { username, name, lastName, password };
-    console.log(registerData);
+    const registerData: IRegister = { username, name, lastName, password };
+
     const res = await this.authService.register(registerData);
 
     if (res?.statusText === 'Created') {
       this.router.navigate(['/login']).then(() => {
         Swal.fire('Registro exitoso', '', 'success');
       });
-    } else this.errorRegister = true;
+    } else {
+      this.errorRegister = true;
+      console.log('Error al crear un usuario');
+    }
   }
 }

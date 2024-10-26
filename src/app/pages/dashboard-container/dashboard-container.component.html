@@ -2,7 +2,7 @@
   <header>
       <h1>ParkingApp</h1>
     <nav>
-      @if (isAdmin == true) {
+      @if (isAdmin == 1) {
         <a [routerLink]="['/reports']" draggable="false">Reports</a>
       }
       <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>

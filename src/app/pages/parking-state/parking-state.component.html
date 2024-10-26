@@ -32,7 +32,7 @@
               <button title="Vacate" (click)="enableParking($index)">
                 <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
               </button>
-              } @if (isAdmin) {
+              } @if (isAdmin == 1) {
               <button title="Delete parking" (click)="deleteParkingAlert($index)">
                 <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
               </button>
