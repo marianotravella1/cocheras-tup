@@ -11,13 +11,13 @@
       <tr>
         <td>{{ $index + 1 }}</td>
         <td>
-          @if (transaction.entryHour) {
-          {{ transaction.exitHour }}
+          @if (transaction.horaIngreso) {
+          {{ transaction.horaEgreso }}
           } @else { - }
         </td>
         <td>
-          @if (transaction.cost) {
-          {{ transaction.cost }}
+          @if (transaction.costo) {
+          {{ transaction.costo }}
           } @else { - }
         </td>
       </tr>

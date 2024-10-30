@@ -11,6 +11,7 @@ export class ParkingsDataService {
   garages: IGarage[] = [];
   authService = inject(DataAuthService);
 
+
   constructor() {
     this.loadData();
   }
@@ -41,14 +42,18 @@ export class ParkingsDataService {
     if (res.status !== 200) return;
     const resJson: IGarage[] = await res.json();
     this.garages = resJson;
+    console.log(this.garages[0].idCochera)
   }
 
   relateParkingsAndGarages() {
     this.parkings = this.parkings.map((parking) => {
-      const garage = this.garages.find(g => g.parkingId === parking.id && g.exitHour == null);
-      return { ...parking, garage };
+      const estacionamiento = this.garages.find(g => g.idCochera === parking.id && g.horaEgreso == null);
+      return { ...parking, estacionamiento };
     });
+    console.log(this.parkings)
   }
+
+  
 
   lastNumber = this.parkings[this.parkings.length - 1]?.id || 0; // '?' -> if the element exists, an attempt is made to access the number property
   // (another use for '?' (ternary operator))
@@ -57,10 +62,10 @@ export class ParkingsDataService {
   addParking() {
     this.parkings.push({
       id: this.lastNumber + 1,
-      description: '',
-      disabled: 1,
-      deleted: 0,
-      garage: undefined,
+      descripcion: '',
+      deshabilitada: 1,
+      eliminada: 0,
+      estacionamiento: undefined,
     });
     this.lastNumber++;
   }
@@ -75,15 +80,15 @@ export class ParkingsDataService {
   }
 
   disableParking(index: number) {
-    this.parkings[index].disabled = 0;
+    this.parkings[index].deshabilitada = 0;
   }
 
   enableParking(index: number) {
-    this.parkings[index].disabled = 1;
+    this.parkings[index].deshabilitada = 1;
   }
 
-  async openGarage(plate: string, idUserEntry: string, parkingId: number) {
-    const body = { plate, idUserEntry, parkingId };
+  async openGarage(plate: string, idUserEntry: string, idCochera: number) {
+    const body = { plate, idUserEntry, idCochera };
     const res = await fetch('http://localhost:4000/estacionamientos/abrir', {
       method: 'POST',
       headers: {

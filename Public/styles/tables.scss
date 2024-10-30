@@ -176,7 +176,7 @@ main {
   font-weight: 700;
   padding: 10px;
   border-radius: 10px;
-  pointer-events: none;
+  cursor: pointer;
 }
 .parking-occupied {
   background-color: colors.$occupied-color;

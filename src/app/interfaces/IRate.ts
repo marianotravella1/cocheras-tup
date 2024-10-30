@@ -1,5 +1,5 @@
 export interface IRate {
     id: string,
-    description: string,
-    value: string
+    descripcion: string,
+    valor: string
 }

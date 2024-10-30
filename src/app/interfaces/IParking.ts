@@ -2,9 +2,9 @@ import { IGarage } from "./IGarage";
 
 export interface IParking {
     id: number;
-    description: string;
-    disabled: number;
-    deleted: number;
-    garage: IGarage | undefined;
+    descripcion: string;
+    deshabilitada: number;
+    eliminada: number;
+    estacionamiento: IGarage | undefined;
 }
 

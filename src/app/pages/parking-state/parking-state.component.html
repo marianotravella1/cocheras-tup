@@ -12,11 +12,11 @@
         <tr>
           <td>{{ parking.id }}</td>
           <td>
-            @if (!parking.garage?.exitHour && parking.garage?.entryHour) {
+            @if (!parking.estacionamiento?.horaEgreso && parking.estacionamiento?.horaIngreso) {
               <button class="plate" (click)="closeGarage(parking)">
-                {{ parking.garage?.plate }}
+                {{ parking.estacionamiento?.patente }}
               </button>
-            } @else if (parking.garage?.exitHour) {
+            } @else if (parking.estacionamiento?.horaEgreso) {
               <button (click)="openGarage(parking.id)">
                 Available
               </button>
@@ -30,10 +30,10 @@
             </span> -->
           </td>
 
-          <td>{{ parking.description }}</td>
+          <td>{{ parking.descripcion }}</td>
           <td>
             <div class="actions-container">
-              @if (parking.disabled) {
+              @if (parking.deshabilitada) {
               <button  title="Occupy" (click)="disableParking($index)">
                 <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
               </button>

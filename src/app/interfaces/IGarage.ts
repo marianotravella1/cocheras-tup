@@ -1,11 +1,11 @@
 export interface IGarage {
-  id: number,
-  plate: string,
-  entryHour: string,
-  exitHour: string,
-  cost: number,
-  idUserEntry: string,
-  idUserExit: string,
-  parkingId: number,
-  deleted: boolean | null
+  id: number;
+  patente: string;
+  horaIngreso: string;
+  horaEgreso: string;
+  costo: number;
+  idUsuarioIngreso: string;
+  idUsuarioEgreso: string;
+  idCochera: number;
+  eliminado: boolean | null;
 }

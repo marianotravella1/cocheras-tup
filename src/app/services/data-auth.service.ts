@@ -23,7 +23,7 @@ export class DataAuthService {
   usuario: IUser | undefined;
 
   async login(loginData: ILogin) {
-    const res = await fetch('http://localhost:5279/login', {
+    const res = await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -40,7 +40,7 @@ export class DataAuthService {
       token: resJson.token,
       isAdmin: resJson.isAdmin,
     };
-    
+
     localStorage.setItem('authToken', resJson.token);
     localStorage.setItem('role', JSON.stringify(resJson.isAdmin ? 1 : 0))
     
@@ -48,7 +48,7 @@ export class DataAuthService {
   }
 
   async register(registerData: IRegister) {
-    const res = await fetch('http://localhost:5279/register', {
+    const res = await fetch('http://localhost:4000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

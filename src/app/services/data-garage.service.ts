@@ -14,20 +14,20 @@ export class DataGarageService {
   }
 
   async getLastTransactions(quantity = 5) {
-    if (!this.parkingsDataService.garages || this.parkingsDataService.garages.length === 0) {
+    if (!this.parkingsDataService.garages.length ) {
       console.error('No hay estacionamientos disponibles');
       console.log(this.parkingsDataService.garages);
     }
 
     const filteredTransactions = this.parkingsDataService.garages.filter(
-      (garage) => garage.entryHour !== null && garage.exitHour !== undefined
+      (garage) => garage.horaIngreso !== null && garage.horaEgreso !== undefined
     );
 
     const lastTransactions = filteredTransactions
       .sort(
         (a, b) =>
-          new Date(b.entryHour.replace(' ', 'T')).getTime() -
-          new Date(a.entryHour.replace(' ', 'T')).getTime()
+          new Date(b.horaIngreso.replace(' ', 'T')).getTime() -
+          new Date(a.horaEgreso.replace(' ', 'T')).getTime()
       ) // Ordenar de más reciente a más antiguo
       .slice(0, quantity);
 

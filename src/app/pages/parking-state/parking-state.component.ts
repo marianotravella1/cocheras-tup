@@ -36,6 +36,7 @@ export class ParkingStateComponent {
 
   deleteRow(index: number) {
     this.parkinsDataService.deleteRow(index);
+
   }
 
   deleteAll() {
@@ -71,77 +72,76 @@ export class ParkingStateComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteAll();
+        
         Swal.fire('Parkings deleted!', '', 'success');
       }
     });
   }
 
-  openGarage(parkingId: number) {
-    const idUserEntry = 'ADMIN';
+  openGarage(idCochera: number) {
+    const idUsuarioIngreso = "ADMIN"
     Swal.fire({
-      title: 'Open Parking',
-      html: `<input type="text" id="plate" class="swal2-input" placeholder="Ingrese patente">`,
+      title: "Abrir Cochera",
+      html: `<input type="text" id="patente" class="swal2-input" placeholder="Ingrese patente">`,
       showCancelButton: true,
-      confirmButtonText: 'Open',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: "Abrir",
+      cancelButtonText: "Cancelar",
       preConfirm: () => {
-        const plateInput = document.getElementById(
-          'patente'
-        ) as HTMLInputElement;
-        if (!plateInput || !plateInput.value) {
-          Swal.showValidationMessage('Please enter a plate');
+        const patenteInput = document.getElementById("patente") as HTMLInputElement
+        if (!patenteInput || !patenteInput.value) {
+          Swal.showValidationMessage("Por favor, ingrese una patente")
           return false;
         }
-        return { plate: plateInput.value };
-      },
+        return { patente: patenteInput.value };
+      }
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { plate } = result.value;
-        await this.parkinsDataService.openGarage(plate, idUserEntry, parkingId);
+        const { patente } = result.value;
+        await this.parkinsDataService.openGarage(patente, idUsuarioIngreso, idCochera);
       }
-    });
+    })
   }
 
-  closeGarage(parking: IParking) {
-    const time = parking.garage?.entryHour;
-    let entryDate;
-    let hours = 0; 
-    let minutes = 0; 
-    let plate: string;
-    let rateToSearch: string;
+  closeGarage(cochera: IParking) {
+    const horario = cochera.estacionamiento?.horaIngreso;
+    let fechaIngreso;
+    let horasPasadas = 0; 
+    let minutosPasados = 0; 
+    let patente: string;
+    let tarifaABuscar: string;
     let total;
 
-    if (time) {
-      entryDate = new Date(time);
+    if (horario) {
+        fechaIngreso = new Date(horario);
 
-        if (entryDate) {
-            const currentDate = new Date();
-            const differenceInMiliseconds = currentDate.getTime() - entryDate.getTime();
-            hours = Math.floor(differenceInMiliseconds / (1000 * 60 * 60));
-            minutes = Math.floor((differenceInMiliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        if (fechaIngreso) {
+            const fechaActual = new Date();
+            const diferenciaEnMilisegundos = fechaActual.getTime() - fechaIngreso.getTime();
+            horasPasadas = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60));
+            minutosPasados = Math.floor((diferenciaEnMilisegundos % (1000 * 60 * 60)) / (1000 * 60));
         }
 
-        plate = parking.garage?.plate!;
+        patente = cochera.estacionamiento?.patente!;
 
-        const totalMinutes = hours * 60 + minutes;
-        if (totalMinutes <= 30) {
-          rateToSearch = "MEDIAHORA";
-        } else if (totalMinutes <= 60) {
-          rateToSearch = "PRIMERAHORA";
+        const totalMinutos = horasPasadas * 60 + minutosPasados;
+        if (totalMinutos <= 30) {
+            tarifaABuscar = "MEDIAHORA";
+        } else if (totalMinutos <= 60) {
+            tarifaABuscar = "PRIMERAHORA";
         } else {
-          rateToSearch = "VALORHORA";
+            tarifaABuscar = "VALORHORA";
         }
 
-        total = this.dataRatesService.rates.find(r => r.id === rateToSearch)?.value;
+        total = this.dataRatesService.rates.find(t => t.id === tarifaABuscar)?.valor;
     }
 
-    const horaFormateada = entryDate ? entryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+    const horaFormateada = fechaIngreso ? fechaIngreso.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
 
     Swal.fire({
         html: `
             <div style="text-align: left;">
                 <h4>Horario de inicio: ${horaFormateada}</h4>
-                <h4>Tiempo transcurrido: ${hours} horas y ${minutes} minutos</h4>
+                <h4>Tiempo transcurrido: ${horasPasadas} horas y ${minutosPasados} minutos</h4>
                 <hr style="border: 1px solid #ccc;">
                 <h2 style="margin: 20px 0 10px; text-align: center;">Total a cobrar</h2>
                 <div style="background-color: #28a745; color: white; font-size: 24px; padding: 10px; border-radius: 5px; text-align: center; margin: 0 auto; display: block; width: fit-content;">
@@ -160,7 +160,7 @@ export class ParkingStateComponent {
             if (cobrarButton) {
                 cobrarButton.addEventListener('click', async () => {
                     const idUsuarioEgreso = "ADMIN";
-                    await this.parkinsDataService.closeGarage(plate, idUsuarioEgreso);
+                    await this.parkinsDataService.closeGarage(patente, idUsuarioEgreso);
                     Swal.close();
                 });
             }
