@@ -8,7 +8,7 @@ import { soloPublicoGuard } from './guards/solo-publico.guard';
 import { soloAdminGuard } from './guards/solo-admin.guard';
 import { soloLoggedGuard } from './guards/solo-logged.guard';
 import { RegisterComponent } from './pages/register/register.component';
-import { PricesComponent } from './pages/prices/prices.component';
+import { RatesComponent } from './pages/rates/rates.component';
 
 
 export const routes: Routes = [
@@ -22,8 +22,8 @@ export const routes: Routes = [
                 component: ParkingStateComponent
             },
             {
-                path: "prices",
-                component: PricesComponent
+                path: "rates",
+                component: RatesComponent
             },
             {
                 path: "reports",

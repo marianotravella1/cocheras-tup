@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DataGarageService } from '../../services/data-garage.service';
 
 @Component({
   selector: 'app-reports',
@@ -9,5 +10,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './reports.component.scss'
 })
 export class ReportsComponent {
-
+  dataGarageService = inject(DataGarageService);
 }

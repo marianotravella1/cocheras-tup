@@ -80,6 +80,16 @@ main {
         transition: 0.1s;
       }
 
+      .edit-img {
+        background-color: colors.$dm-on-surface;
+        &:hover {
+          background-color: darken($color: colors.$dm-on-surface, $amount: 30%);
+        }
+        &:active {
+          background-color: darken($color: colors.$dm-on-surface, $amount: 50%);
+        }
+      }
+
       .occupy-img {
         background-color: colors.$available-color;
         &:hover {
@@ -161,13 +171,13 @@ main {
   }
 }
 
-.available,
-.occupied {
+.parking-available, .parking-occupied {
   background-color: colors.$available-color;
+  font-weight: 700;
   padding: 10px;
   border-radius: 10px;
   pointer-events: none;
 }
-.occupied {
+.parking-occupied {
   background-color: colors.$occupied-color;
 }

@@ -12,19 +12,28 @@
         <tr>
           <td>{{ parking.id }}</td>
           <td>
-            <span
-              [ngClass]="{
-                available: parking.deshabilitada,
-                occupied: !parking.deshabilitada
-              }">
+            @if (!parking.garage?.exitHour && parking.garage?.entryHour) {
+              <button class="plate" (click)="closeGarage(parking)">
+                {{ parking.garage?.plate }}
+              </button>
+            } @else if (parking.garage?.exitHour) {
+              <button (click)="openGarage(parking.id)">
+                Available
+              </button>
+            } @else {
+              <button class="parking-available" (click)="openGarage(parking.id)">
+                Available
+              </button>
+            }
+            <!-- <span [ngClass]="{available: parking.deshabilitada, occupied: !parking.deshabilitada}">
               {{ parking.deshabilitada ? "Available" : "Occupied" }}
-            </span>
+            </span> -->
           </td>
 
-          <td>{{ parking.descripcion }}</td>
+          <td>{{ parking.description }}</td>
           <td>
             <div class="actions-container">
-              @if (parking.deshabilitada) {
+              @if (parking.disabled) {
               <button  title="Occupy" (click)="disableParking($index)">
                 <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
               </button>
@@ -32,7 +41,7 @@
               <button title="Vacate" (click)="enableParking($index)">
                 <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
               </button>
-              } @if (isAdmin == 1) {
+              } @if (isAdmin) {
               <button title="Delete parking" (click)="deleteParkingAlert($index)">
                 <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
               </button>

@@ -1,0 +1,35 @@
+<main>
+  <div class="table-container">
+    <table>
+      <thead>
+        <td>Time</td>
+        <td>Description</td>
+        <td>Value</td>
+        <td>Actions</td>
+      </thead>
+      <tbody>
+        @for (rate of dataRatesService.rates; track $index) {
+        <tr>
+          <td>{{ rate.id }}</td>
+          <td>{{ rate.description }}</td>
+          <td>${{ rate.value }}</td>
+
+          <td>
+            <div class="actions-container">
+              <button (click)="updateRateValue(rate.id)">
+                <img
+                  class="edit-img"
+                  src="../../../assets/images/edit.png"
+                  alt="Edit"
+                />
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <span>No rates available</span>
+        }
+      </tbody>
+    </table>
+  </div>
+</main>

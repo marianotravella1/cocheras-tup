@@ -1,12 +1,12 @@
 <div class="dashboard-container">
   <header>
-      <h1>ParkingApp</h1>
+    <h1>ParkingApp</h1>
     <nav>
-      @if (isAdmin == 1) {
-        <a [routerLink]="['/reports']" draggable="false">Reports</a>
+      @if (isAdmin) {
+      <a [routerLink]="['/reports']" draggable="false">Reports</a>
       }
       <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>
-      <a [routerLink]="['/prices']" draggable="false">Prices</a>
+      <a [routerLink]="['/rates']" draggable="false">Prices</a>
       <a [routerLink]="['/user']" draggable="false">User</a>
       <a [routerLink]="['/login']" draggable="false">Log out</a>
     </nav>

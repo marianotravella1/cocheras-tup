@@ -14,7 +14,7 @@ export class DashboardContainerComponent {
   authService = inject(DataAuthService);
   parkingsService = inject(ParkingsDataService)
 
-  isAdmin = this.authService.usuario?.isAdmin;
+  isAdmin = true;
 
 
 }
