@@ -16,9 +16,9 @@ export class ParkingsDataService {
   }
 
   async loadData() {
-    await this.getParkings()
-    await this.getGarages()
-    this.relateParkingsAndGarages()
+    await this.getParkings();
+    await this.getGarages();
+    this.relateParkingsAndGarages();
   }
 
   async getParkings() {
@@ -32,21 +32,21 @@ export class ParkingsDataService {
     this.parkings = resJson;
   }
 
-  async getGarages(){
-    const res = await fetch('http://localhost:4000/estacionamientos',{
+  async getGarages() {
+    const res = await fetch('http://localhost:4000/estacionamientos', {
       headers: {
-        authorization:'Bearer '+ localStorage.getItem("authToken")
+        authorization: 'Bearer ' + localStorage.getItem('authToken'),
       },
-    })
-    if(res.status !== 200) return;
+    });
+    if (res.status !== 200) return;
     const resJson: IGarage[] = await res.json();
     this.garages = resJson;
   }
 
   relateParkingsAndGarages() {
-    this.parkings = this.parkings.map(parking => {
-      const garage = this.garages.find(e => e.parkingId === parking.id)
-      return {...parking, garage}
+    this.parkings = this.parkings.map((parking) => {
+      const garage = this.garages.find(g => g.parkingId === parking.id && g.exitHour == null);
+      return { ...parking, garage };
     });
   }
 
@@ -60,7 +60,7 @@ export class ParkingsDataService {
       description: '',
       disabled: 1,
       deleted: 0,
-      garage: undefined
+      garage: undefined,
     });
     this.lastNumber++;
   }
@@ -100,22 +100,22 @@ export class ParkingsDataService {
     }
   }
 
-  async closeGarage(plate: string, idUserEntry: string) {
-    const body = {plate, idUserEntry};
-    const res = await fetch('http://localhost:4000/estacionamientos/cerrar',{
+  async closeGarage(plate: string, idUserExit: string) {
+    const body = { plate, idUserExit };
+    const res = await fetch('http://localhost:4000/estacionamientos/cerrar', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        authorization:'Bearer '+this.authService.usuario?.token
+        authorization: 'Bearer ' + this.authService.usuario?.token,
       },
-      body: JSON.stringify(body)
-    })
-    if(res.status !== 200) {
-      console.log("Error en el cerrado del estacionamiento")
+      body: JSON.stringify(body),
+    });
+    if (res.status !== 200) {
+      console.log('Error en el cerrado del estacionamiento');
     } else {
-      console.log("Cerrado del estacionamiento exitoso")
-      console.log(res)
+      console.log('Cerrado del estacionamiento exitoso');
+      console.log(res);
       this.loadData();
-    };    
+    }
   }
 }

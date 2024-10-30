@@ -40,7 +40,7 @@ export class DataAuthService {
       token: resJson.token,
       isAdmin: resJson.isAdmin,
     };
-
+    
     localStorage.setItem('authToken', resJson.token);
     localStorage.setItem('role', JSON.stringify(resJson.isAdmin ? 1 : 0))
     

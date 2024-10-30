@@ -132,7 +132,7 @@ export class ParkingStateComponent {
           rateToSearch = "VALORHORA";
         }
 
-        total = this.dataRatesService.rates.find(t => t.id === rateToSearch)?.value;
+        total = this.dataRatesService.rates.find(r => r.id === rateToSearch)?.value;
     }
 
     const horaFormateada = entryDate ? entryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
