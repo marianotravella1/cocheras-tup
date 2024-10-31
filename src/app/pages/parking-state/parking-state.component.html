@@ -12,17 +12,17 @@
         <tr>
           <td>{{ cochera.id }}</td>
           <td>
-            @if (!cochera.estacionamiento?.horaEgreso && cochera.estacionamiento?.horaIngreso) {
+            @if (cochera.deshabilitada) {
+              <button class="parking-disabled">
+                Deshabilitada
+              </button>
+            } @else if (!cochera.estacionamiento?.horaEgreso && cochera.estacionamiento?.horaIngreso) {
               <button [id]="cochera.estacionamiento?.patente?.length === 6 ? 'plate' : 'modern-plate'" (click)="closeGarage(cochera)">
                 {{ formatPlate(cochera.estacionamiento?.patente) }}
               </button>
-            } @else if (cochera.estacionamiento?.horaEgreso) {
-              <button (click)="openGarage(cochera.id)">
-                Available
-              </button>
             } @else {
-              <button class="parking-available" (click)="openGarage(cochera.id)">
-                Available
+              <button (click)="openGarage(cochera.id)" class="parking-available" (click)="openGarage(cochera.id)">
+                Disponible
               </button>
             }
             <!-- <span [ngClass]="{available: parking.deshabilitada, occupied: !parking.deshabilitada}">
@@ -35,15 +35,15 @@
             <div class="actions-container">
               @if (!cochera.estacionamiento?.patente) {
                 @if (!cochera.deshabilitada) {
-                <button  title="Occupy" (click)="preguntarDeshabilitarCochera($index)">
+                <button  title="Deshabilitar" (click)="preguntarDeshabilitarCochera(cochera.id)">
                   <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
                 </button>
                 } @else {
-                <button title="Vacate" (click)="preguntarHabilitarCochera($index)">
+                <button title="Habilitar" (click)="preguntarHabilitarCochera(cochera.id)">
                   <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
                 </button>
                 } @if (esAdmin) {
-                <button title="Delete parking" (click)="preguntarBorrarCochera($index)">
+                <button title="Delete parking" (click)="preguntarBorrarCochera(cochera.id)">
                   <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
                 </button>
                 }
@@ -56,7 +56,7 @@
     </table>
     @if(esAdmin){
       <div class="btn-admin-container">
-        <button (click)="agregarCochera()" class="btn-add" title="Add parking">
+        <button (click)="preguntarAgregarCochera()" class="btn-add" title="Add parking">
           <img src="./../../../assets/images/add.svg" draggable="false" alt="+">
         </button>
       </div>

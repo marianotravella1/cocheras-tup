@@ -30,19 +30,27 @@ export class ParkingStateComponent {
     c4: 'Actions',
   };
 
-  async agregarCochera(){
-    await this.parkinsDataService.agregarCochera()
+
+
+  preguntarAgregarCochera(){
+    Swal.fire({
+      title: "Agregar nueva cochera?",
+      showCancelButton: true,
+      confirmButtonText: "Agregar",
+      denyButtonText: `Cancelar`,
+      input: "text",
+      inputLabel: "Nombre cochera"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        this.parkinsDataService.agregarCochera(result.value)
+        Swal.fire("Cochera agregada!", "", "success");
+      }
+    });
   }
 
-  async borrarFila(index:number){
-    await this.parkinsDataService.borrarFila(index)
-  }
 
-  deshabilitarCochera(index:number){
-    this.parkinsDataService.deshabilitarCochera(index)
-  }
 
-  preguntarDeshabilitarCochera(index: number){
+  preguntarDeshabilitarCochera(idCochera: number){
     Swal.fire({
       title: "Deshabilitar cochera?",
       showCancelButton: true,
@@ -50,14 +58,10 @@ export class ParkingStateComponent {
       denyButtonText: `Cancelar`
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await this.parkinsDataService.deshabilitarCochera(index)
+        await this.parkinsDataService.deshabilitarCochera(idCochera)
         Swal.fire("Cochera deshabilitada!", "", "success");
       }
     });
-  }
-
-  habilitarCochera(index:number){
-    this.parkinsDataService.habilitarCochera(index)
   }
 
   preguntarHabilitarCochera(index: number){
@@ -74,20 +78,15 @@ export class ParkingStateComponent {
     });
   }
 
-  preguntarBorrarCochera(cocheraId: number){
+  preguntarBorrarCochera(index: number){
     Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
+      title: "Borrar cochera?",
       showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
-    }).then(async (result) => {
-      /* Read more about isConfirmed, isDenied below */
+      confirmButtonText: "Eliminar"
+    }).then(async (result) => { 
       if (result.isConfirmed) {
-        await this.borrarFila(cocheraId)
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        await this.parkinsDataService.borrarCochera(index)
+        Swal.fire("Cochera eliminada!", "", "success");
       }
     });
   }

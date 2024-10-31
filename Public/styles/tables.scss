@@ -176,12 +176,20 @@ main {
   }
 }
 
-.parking-available {
+.parking-available, .parking-disabled {
+  min-width: 100px;;
   background-color: colors.$available-color;
   font-weight: 700;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.parking-disabled {
+  color: #f1f1f1;
+  background-color: gray;
+  opacity: 0.7;
+
 }
 
 #plate, #modern-plate {
