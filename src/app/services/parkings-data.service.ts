@@ -87,8 +87,12 @@ export class ParkingsDataService {
     this.parkings[index].deshabilitada = 1;
   }
 
-  async openGarage(plate: string, idUserEntry: string, idCochera: number) {
-    const body = { plate, idUserEntry, idCochera };
+  async openGarage(
+    patente: string,
+    idUsuarioIngreso: string,
+    idCochera: number
+  ) {
+    const body = { patente, idUsuarioIngreso, idCochera };
     const res = await fetch('http://localhost:4000/estacionamientos/abrir', {
       method: 'POST',
       headers: {
@@ -105,8 +109,8 @@ export class ParkingsDataService {
     }
   }
 
-  async closeGarage(plate: string, idUserExit: string) {
-    const body = { plate, idUserExit };
+  async closeGarage(patente: string, idUsuarioEgreso: string) {
+    const body = { patente, idUsuarioEgreso };
     const res = await fetch('http://localhost:4000/estacionamientos/cerrar', {
       method: 'PATCH',
       headers: {
