@@ -18,8 +18,8 @@ export class RegisterComponent {
   router = inject(Router);
 
   async register(registerForm: NgForm) {
-    const { username, name, lastName, password } = registerForm.value;
-    const registerData: IRegister = { username, name, lastName, password };
+    const { username, nombre, apellido, password } = registerForm.value;
+    const registerData: IRegister = { username, nombre, apellido, password };
 
     const res = await this.authService.register(registerData);
 

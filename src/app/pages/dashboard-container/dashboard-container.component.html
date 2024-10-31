@@ -3,7 +3,7 @@
     <h1>ParkingApp</h1>
     <nav>
       @if (isAdmin) {
-      <a [routerLink]="['/reports']" draggable="false">Reports</a>
+      <a [routerLink]="['/reports']" routerLinkActive="link-activo" draggable="false">Reports</a>
       }
       <a [routerLink]="['/parking-state']" draggable="false">Parking State</a>
       <a [routerLink]="['/rates']" draggable="false">Prices</a>

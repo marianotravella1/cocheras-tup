@@ -21,7 +21,7 @@ export class ParkingStateComponent {
   dataGarageService = inject(DataGarageService);
   dataRatesService = inject(dataRatesService)
 
-  isAdmin = true
+  esAdmin = true
 
   tableHeader = {
     c1: 'N°',
@@ -30,50 +30,64 @@ export class ParkingStateComponent {
     c4: 'Actions',
   };
 
-  addParking() {
-    this.parkinsDataService.addParking();
+  async agregarCochera(){
+    await this.parkinsDataService.agregarCochera()
   }
 
-  deleteRow(index: number) {
-    this.parkinsDataService.deleteRow(index);
-
+  async borrarFila(index:number){
+    await this.parkinsDataService.borrarFila(index)
   }
 
-  deleteAll() {
-    this.parkinsDataService.deleteAll();
+  deshabilitarCochera(index:number){
+    this.parkinsDataService.deshabilitarCochera(index)
   }
 
-  disableParking(index: number) {
-    this.parkinsDataService.disableParking(index);
-  }
-
-  enableParking(index: number) {
-    this.parkinsDataService.enableParking(index);
-  }
-
-  deleteParkingAlert(index: number) {
+  preguntarDeshabilitarCochera(index: number){
     Swal.fire({
-      title: 'Do you want to delete this parking?',
+      title: "Deshabilitar cochera?",
       showCancelButton: true,
-      confirmButtonText: 'Delete',
-    }).then((result) => {
+      confirmButtonText: "Deshabilitar",
+      denyButtonText: `Cancelar`
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        this.deleteRow(index);
-        Swal.fire('Parking deleted!', '', 'success');
+        await this.parkinsDataService.deshabilitarCochera(index)
+        Swal.fire("Cochera deshabilitada!", "", "success");
       }
     });
   }
 
-  deleteAllAlert() {
+  habilitarCochera(index:number){
+    this.parkinsDataService.habilitarCochera(index)
+  }
+
+  preguntarHabilitarCochera(index: number){
     Swal.fire({
-      title: 'Do you want to delete all parkings?',
+      title: "Hablitar cochera?",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete all',
-    }).then((result) => {
+      confirmButtonText: "Habilitar",
+      denyButtonText: `Cancelar`
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        this.deleteAll();
-        
-        Swal.fire('Parkings deleted!', '', 'success');
+        await this.parkinsDataService.habilitarCochera(index)
+        Swal.fire("Cochera habilitada!", "", "success");
+      }
+    });
+  }
+
+  preguntarBorrarCochera(cocheraId: number){
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        await this.borrarFila(cocheraId)
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
       }
     });
   }

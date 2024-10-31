@@ -7,5 +7,4 @@ export interface IResLogin {
   status: string;
   mensaje: string;
   token?: string;
-  isAdmin: Number;
 }

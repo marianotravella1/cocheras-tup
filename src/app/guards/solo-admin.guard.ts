@@ -6,7 +6,7 @@ export const soloAdminGuard: CanActivateFn = (route, state) => {
   const dataAuthService = inject(DataAuthService);
   const router = inject(Router);
 
-  if (dataAuthService.usuario?.isAdmin) {
+  if (dataAuthService.usuario?.esAdmin) {
     console.log("es admin")
     return true;
   }

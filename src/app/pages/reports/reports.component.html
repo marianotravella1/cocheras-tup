@@ -1,4 +1,3 @@
-
 <main>
   <table>
     <thead>
@@ -7,18 +6,18 @@
       <td>Cobrado</td>
     </thead>
     <tbody>
-      @for (transaction of this.dataGarageService.lastTransactions; track
+      @for (transaccion of this.dataGarageService.ultimasTransacciones; track
       $index) {
       <tr>
         <td>{{ $index + 1 }}</td>
         <td>
-          @if (transaction.horaIngreso) {
-          {{ transaction.horaEgreso }}
+          @if (transaccion.horaIngreso) {
+          {{ transaccion.horaEgreso }}
           } @else { - }
         </td>
         <td>
-          @if (transaction.costo) {
-          {{ transaction.costo }}
+          @if (transaccion.costo) {
+          {{ transaccion.costo }}
           } @else { - }
         </td>
       </tr>

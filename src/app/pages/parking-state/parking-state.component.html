@@ -8,20 +8,20 @@
         <td>{{ tableHeader.c4 }}</td>
       </thead>
       <tbody>
-        @for (parking of parkinsDataService.parkings; track $index) {
+        @for (cochera of parkinsDataService.cocheras; track $index) {
         <tr>
-          <td>{{ parking.id }}</td>
+          <td>{{ cochera.id }}</td>
           <td>
-            @if (!parking.estacionamiento?.horaEgreso && parking.estacionamiento?.horaIngreso) {
-              <button [id]="parking.estacionamiento?.patente?.length === 6 ? 'plate' : 'modern-plate'" (click)="closeGarage(parking)">
-                {{ formatPlate(parking.estacionamiento?.patente) }}
+            @if (!cochera.estacionamiento?.horaEgreso && cochera.estacionamiento?.horaIngreso) {
+              <button [id]="cochera.estacionamiento?.patente?.length === 6 ? 'plate' : 'modern-plate'" (click)="closeGarage(cochera)">
+                {{ formatPlate(cochera.estacionamiento?.patente) }}
               </button>
-            } @else if (parking.estacionamiento?.horaEgreso) {
-              <button (click)="openGarage(parking.id)">
+            } @else if (cochera.estacionamiento?.horaEgreso) {
+              <button (click)="openGarage(cochera.id)">
                 Available
               </button>
             } @else {
-              <button class="parking-available" (click)="openGarage(parking.id)">
+              <button class="parking-available" (click)="openGarage(cochera.id)">
                 Available
               </button>
             }
@@ -30,21 +30,23 @@
             </span> -->
           </td>
 
-          <td>{{ parking.descripcion }}</td>
+          <td>{{ cochera.descripcion }}</td>
           <td>
             <div class="actions-container">
-              @if (parking.deshabilitada) {
-              <button  title="Occupy" (click)="disableParking($index)">
-                <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
-              </button>
-              } @else {
-              <button title="Vacate" (click)="enableParking($index)">
-                <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
-              </button>
-              } @if (isAdmin) {
-              <button title="Delete parking" (click)="deleteParkingAlert($index)">
-                <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
-              </button>
+              @if (!cochera.estacionamiento?.patente) {
+                @if (!cochera.deshabilitada) {
+                <button  title="Occupy" (click)="preguntarDeshabilitarCochera($index)">
+                  <img class="occupy-img" src="./../../../assets/images/arrow-alt-square-left.svg" draggable="false" alt="Occupy"/>
+                </button>
+                } @else {
+                <button title="Vacate" (click)="preguntarHabilitarCochera($index)">
+                  <img class="vacate-img" src="./../../../assets/images/arrow-alt-square-right.svg" draggable="false" alt="Vacate"/>
+                </button>
+                } @if (esAdmin) {
+                <button title="Delete parking" (click)="preguntarBorrarCochera($index)">
+                  <img class="delete-img" src="./../../../assets/images/trash.svg" draggable="false" alt="Delete">
+                </button>
+                }
               }
             </div>
           </td>
@@ -52,16 +54,11 @@
         }
       </tbody>
     </table>
-    @if(isAdmin){
+    @if(esAdmin){
       <div class="btn-admin-container">
-        <button (click)="addParking()" class="btn-add" title="Add parking">
+        <button (click)="agregarCochera()" class="btn-add" title="Add parking">
           <img src="./../../../assets/images/add.svg" draggable="false" alt="+">
         </button>
-        @if (parkinsDataService.parkings.length > 1) {
-        <button class="delete-all" (click)="deleteAllAlert()">
-          Delete All
-        </button>
-        } 
       </div>
      }
   </div>
