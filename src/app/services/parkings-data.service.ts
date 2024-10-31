@@ -45,9 +45,7 @@ export class ParkingsDataService {
 
   relateParkingsAndGarages() {
     this.cocheras = this.cocheras.map((cochera) => {
-      const estacionamiento = this.estacionamientos.find(
-        (e) => e.idCochera === cochera.id && e.horaEgreso == null
-      );
+      const estacionamiento = this.estacionamientos.find((e) => e.idCochera === cochera.id && !e.horaEgreso);
       return { ...cochera, estacionamiento };
     });
   }

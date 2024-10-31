@@ -37,6 +37,5 @@ export class DataGarageService {
       .slice(0, cantidad);
 
     this.ultimasTransacciones = ultimasTransacciones;
-    console.log(this.ultimasTransacciones);
   }
 }

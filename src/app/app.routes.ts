@@ -28,7 +28,7 @@ export const routes: Routes = [
             {
                 path: "reports",
                 component: ReportsComponent,
-                canActivate: [soloAdminGuard]
+                //canActivate: [soloAdminGuard]
             },
         ]
     },

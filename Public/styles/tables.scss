@@ -28,8 +28,9 @@ main {
   thead,
   tr {
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     min-width: 600px;
+    max-width: 700px;
     justify-items: center;
     align-items: center;
     height: 50px;
@@ -177,11 +178,11 @@ main {
 }
 
 .parking-available, .parking-disabled {
-  min-width: 100px;;
+  min-width: 110px;;
   background-color: colors.$available-color;
   font-weight: 700;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -196,7 +197,7 @@ main {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  min-width: 100px;
+  min-width: 110px;
   padding: 2px 2px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);

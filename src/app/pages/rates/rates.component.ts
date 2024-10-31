@@ -18,7 +18,7 @@ export class RatesComponent {
 
   async updateRateValue(rateId: string) {
     this.modalService
-        .inputModal("Update Rate", "Enter new rate value", "Rate Value", "number")
+        .inputModal("Actualizar Tarifa", "Ingrese un nuevo valor de tarifa", "Rate Value", "number")
         .then((rateValue) => {
           if (rateValue) {
             this.dataRatesService.updateRateValue(rateId, rateValue);

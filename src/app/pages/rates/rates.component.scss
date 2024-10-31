@@ -1,6 +1,3 @@
 @use "./../../../../Public/styles/tables.scss";
 @use "./../../../../Public/styles/colors.scss";
 
-thead, tr {
-  grid-template-columns: 1fr 1fr 1fr 1fr !important;
-}
