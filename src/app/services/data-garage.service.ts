@@ -6,31 +6,37 @@ import { ParkingsDataService } from './parkings-data.service';
   providedIn: 'root',
 })
 export class DataGarageService {
-  parkingsDataService = inject(ParkingsDataService);
-  lastTransactions: IGarage[] = [];
+  dataCocheraService = inject(ParkingsDataService);
+  ultimasTransacciones: IGarage[] = [];
 
   constructor() {
-    this.getLastTransactions();
+    this.getUltimasTransacciones();
   }
 
-  async getLastTransactions(quantity = 5) {
-    if (!this.parkingsDataService.garages.length ) {
+  async getUltimasTransacciones(cantidad = 5) {
+    if (
+      !this.dataCocheraService.estacionamientos ||
+      this.dataCocheraService.estacionamientos.length === 0
+    ) {
       console.error('No hay estacionamientos disponibles');
-      console.log(this.parkingsDataService.garages);
     }
 
-    const filteredTransactions = this.parkingsDataService.garages.filter(
-      (garage) => garage.horaIngreso !== null && garage.horaEgreso !== undefined
-    );
+    const transaccionesFiltradas =
+      this.dataCocheraService.estacionamientos.filter(
+        (estacionamiento) =>
+          estacionamiento.horaEgreso !== null &&
+          estacionamiento.horaEgreso !== undefined
+      );
 
-    const lastTransactions = filteredTransactions
+    const ultimasTransacciones = transaccionesFiltradas
       .sort(
         (a, b) =>
           new Date(b.horaIngreso.replace(' ', 'T')).getTime() -
-          new Date(a.horaEgreso.replace(' ', 'T')).getTime()
+          new Date(a.horaIngreso.replace(' ', 'T')).getTime()
       ) // Ordenar de más reciente a más antiguo
-      .slice(0, quantity);
+      .slice(0, cantidad);
 
-    this.lastTransactions = lastTransactions;
+    this.ultimasTransacciones = ultimasTransacciones;
+    console.log(this.ultimasTransacciones);
   }
 }

@@ -7,8 +7,8 @@ import { IGarage } from '../interfaces/IGarage';
   providedIn: 'root',
 })
 export class ParkingsDataService {
-  parkings: IParking[] = [];
-  garages: IGarage[] = [];
+  cocheras: IParking[] = [];
+  estacionamientos: IGarage[] = [];
   authService = inject(DataAuthService);
 
 
@@ -30,7 +30,7 @@ export class ParkingsDataService {
     });
     if (res.status !== 200) return;
     const resJson: IParking[] = await res.json();
-    this.parkings = resJson;
+    this.cocheras = resJson;
   }
 
   async getGarages() {
@@ -41,26 +41,24 @@ export class ParkingsDataService {
     });
     if (res.status !== 200) return;
     const resJson: IGarage[] = await res.json();
-    this.garages = resJson;
-    console.log(this.garages[0].idCochera)
+    this.estacionamientos = resJson;
   }
 
   relateParkingsAndGarages() {
-    this.parkings = this.parkings.map((parking) => {
-      const estacionamiento = this.garages.find(g => g.idCochera === parking.id && g.horaEgreso == null);
-      return { ...parking, estacionamiento };
+    this.cocheras = this.cocheras.map((cochera) => {
+      const estacionamiento = this.estacionamientos.find(g => g.idCochera === cochera.id && g.horaEgreso == null);
+      return { ...cochera, estacionamiento };
     });
-    console.log(this.parkings)
   }
 
   
 
-  lastNumber = this.parkings[this.parkings.length - 1]?.id || 0; // '?' -> if the element exists, an attempt is made to access the number property
+  lastNumber = this.cocheras[this.cocheras.length - 1]?.id || 0; // '?' -> if the element exists, an attempt is made to access the number property
   // (another use for '?' (ternary operator))
   // lastNumber = this.parkings.length === 0 ? 0 : this.parkings[this.parkings.length-1].number;
 
   addParking() {
-    this.parkings.push({
+    this.cocheras.push({
       id: this.lastNumber + 1,
       descripcion: '',
       deshabilitada: 1,
@@ -71,20 +69,20 @@ export class ParkingsDataService {
   }
 
   deleteRow(index: number) {
-    this.parkings.splice(index, 1);
+    this.cocheras.splice(index, 1);
   }
 
   deleteAll() {
-    this.parkings = [];
+    this.cocheras = [];
     this.lastNumber = 0;
   }
 
   disableParking(index: number) {
-    this.parkings[index].deshabilitada = 0;
+    this.cocheras[index].deshabilitada = 0;
   }
 
   enableParking(index: number) {
-    this.parkings[index].deshabilitada = 1;
+    this.cocheras[index].deshabilitada = 1;
   }
 
   async openGarage(
