@@ -19,13 +19,11 @@ main {
   border: none;
   overflow: hidden;
   border-radius: 15px;
-  background-color: rgba(colors.$dm-surface,0.5);
-  backdrop-filter: blur(5px); 
+  background-color: rgba(colors.$dm-surface, 0.5);
+  backdrop-filter: blur(5px);
   user-select: none;
 
-
   box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.75);
-
 
   thead,
   tr {
@@ -38,20 +36,19 @@ main {
     transition: 0.1s;
 
     &:nth-child(even) {
-      background-color: rgba(colors.$dm-surface,0.3);
+      background-color: rgba(colors.$dm-surface, 0.3);
     }
   }
   tr:hover {
-    background-color: darken($color: colors.$dm-surface , $amount: 20%)
+    background-color: darken($color: colors.$dm-surface, $amount: 20%);
   }
   thead {
     color: colors.$dm-on-surface;
     font-weight: bold;
     font-size: 1.5rem;
     border-bottom: solid darken($color: colors.$dm-border, $amount: 5%);
-    background-color: rgba(colors.$dm-surface,0.5);
-    backdrop-filter: blur(5px); 
-
+    background-color: rgba(colors.$dm-surface, 0.5);
+    backdrop-filter: blur(5px);
   }
   tbody tr {
     color: colors.$dm-on-surface;
@@ -93,32 +90,41 @@ main {
       .occupy-img {
         background-color: colors.$available-color;
         &:hover {
-          background-color: darken($color: colors.$available-color, $amount: 10%);
+          background-color: darken(
+            $color: colors.$available-color,
+            $amount: 10%
+          );
         }
         &:active {
-          background-color: darken($color: colors.$available-color, $amount: 20%);
+          background-color: darken(
+            $color: colors.$available-color,
+            $amount: 20%
+          );
         }
       }
 
       .vacate-img {
         background-color: colors.$occupied-color;
         &:hover {
-          background-color: darken($color: colors.$occupied-color, $amount: 10%);
-
+          background-color: darken(
+            $color: colors.$occupied-color,
+            $amount: 10%
+          );
         }
         &:active {
-          background-color: darken($color: colors.$occupied-color, $amount: 20%);
+          background-color: darken(
+            $color: colors.$occupied-color,
+            $amount: 20%
+          );
         }
       }
       .delete-img {
         background-color: colors.$dm-error;
         &:hover {
           background-color: darken($color: colors.$dm-error, $amount: 10%);
-
         }
         &:active {
           background-color: darken($color: colors.$dm-error, $amount: 20%);
-
         }
       }
     }
@@ -163,7 +169,6 @@ main {
 
     &:hover {
       background-color: darken($color: colors.$dm-error, $amount: 10%);
-
     }
     &:active {
       background-color: darken($color: colors.$dm-error, $amount: 20%);
@@ -171,13 +176,37 @@ main {
   }
 }
 
-.parking-available, .parking-occupied {
+.parking-available {
   background-color: colors.$available-color;
   font-weight: 700;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
 }
-.parking-occupied {
-  background-color: colors.$occupied-color;
+
+#plate, #modern-plate {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
+  padding: 2px 2px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  background-color: #121212;
+  color: #f1f1f1;
+  border-top: 6px solid rgb(237, 237, 237);
+  border-bottom: 6px solid rgb(237, 237, 237);
+  border-left: 1px solid rgb(237, 237, 237);
+  border-right: 1px solid rgb(237, 237, 237);
+
+  
 }
+#modern-plate {
+    background-color: #f1f1f1;
+    color: #121212;
+    border-top: 8px solid #0030A3;
+    border-bottom: 3px solid #121212;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+
+  }

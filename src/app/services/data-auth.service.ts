@@ -57,6 +57,7 @@ export class DataAuthService {
     });
 
     if (res.status !== 201) return;
+    console.log(res);
     return res;
   }
 }

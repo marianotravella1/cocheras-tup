@@ -13,8 +13,8 @@
           <td>{{ parking.id }}</td>
           <td>
             @if (!parking.estacionamiento?.horaEgreso && parking.estacionamiento?.horaIngreso) {
-              <button class="plate" (click)="closeGarage(parking)">
-                {{ parking.estacionamiento?.patente }}
+              <button [id]="parking.estacionamiento?.patente?.length === 6 ? 'plate' : 'modern-plate'" (click)="closeGarage(parking)">
+                {{ formatPlate(parking.estacionamiento?.patente) }}
               </button>
             } @else if (parking.estacionamiento?.horaEgreso) {
               <button (click)="openGarage(parking.id)">

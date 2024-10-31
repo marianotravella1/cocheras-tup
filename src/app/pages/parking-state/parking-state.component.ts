@@ -82,7 +82,12 @@ export class ParkingStateComponent {
     const idUsuarioIngreso = "ADMIN"
     Swal.fire({
       title: "Abrir Cochera",
-      html: `<input type="text" id="patente" class="swal2-input" placeholder="Ingrese patente">`,
+      html: `<input type="text" 
+      id="patente" 
+      class="swal2-input" 
+      placeholder="Ingrese patente" 
+      oninput="this.value = this.value.toUpperCase().replace(/\\s/g, '')"
+      maxlength="7">`,
       showCancelButton: true,
       confirmButtonText: "Abrir",
       cancelButtonText: "Cancelar",
@@ -171,6 +176,23 @@ export class ParkingStateComponent {
                 });
             }
         }
-    });
+    }); 
+
+    
+  }
+
+  formatPlate(plate: string | undefined): string {
+    if (!plate) return '';
+  
+    if (plate.length === 6) {
+      // Formato "ABC 123"
+      return `${plate.slice(0, 3)} ${plate.slice(3)}`;
+    } else if (plate.length === 7) {
+      // Formato "AB 123 CD"
+      return `${plate.slice(0, 2)} ${plate.slice(2, 5)} ${plate.slice(5)}`;
+    } else {
+      // En caso de que no tenga el formato esperado
+      return plate;
+    }
   }
 }
