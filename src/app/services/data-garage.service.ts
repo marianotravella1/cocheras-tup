@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { IGarage } from '../interfaces/IGarage';
-import { ParkingsDataService } from './parkings-data.service';
+import { inject, Injectable } from "@angular/core";
+import { IGarage } from "../interfaces/IGarage";
+import { ParkingsDataService } from "./parkings-data.service";
 
 @Injectable({
   providedIn: 'root',

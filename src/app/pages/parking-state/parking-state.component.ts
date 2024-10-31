@@ -204,7 +204,6 @@ export class ParkingStateComponent {
       // Formato "AB 123 CD"
       return `${plate.slice(0, 2)} ${plate.slice(2, 5)} ${plate.slice(5)}`;
     } else {
-      // En caso de que no tenga el formato esperado
       return plate;
     }
   }

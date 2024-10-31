@@ -16,12 +16,12 @@ export class ParkingsDataService {
   }
 
   async loadData() {
-    await this.getParkings();
-    await this.getGarages();
-    this.relateParkingsAndGarages();
+    await this.getCocheras();
+    await this.getEstacionamientos();
+    this.asociarEstacionamientosConCocheras();
   }
 
-  async getParkings() {
+  async getCocheras() {
     const res = await fetch('http://localhost:4000/cocheras', {
       headers: {
         authorization: 'Bearer ' + this.authService.usuario?.token,
@@ -32,7 +32,7 @@ export class ParkingsDataService {
     this.cocheras = resJson;
   }
 
-  async getGarages() {
+  async getEstacionamientos() {
     const res = await fetch('http://localhost:4000/estacionamientos', {
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('authToken'),
@@ -43,7 +43,7 @@ export class ParkingsDataService {
     this.estacionamientos = resJson;
   }
 
-  relateParkingsAndGarages() {
+  asociarEstacionamientosConCocheras() {
     this.cocheras = this.cocheras.map((cochera) => {
       const estacionamiento = this.estacionamientos.find((e) => e.idCochera === cochera.id && !e.horaEgreso);
       return { ...cochera, estacionamiento };
